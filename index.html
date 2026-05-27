@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <head>
+        <meta charset="UTF-8"
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Portfolio | Future Scholar & Designer</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+            :root {
+                --bg-dark: #0b0f19;
+                --bg-card: #131c2e;
+                --text-primary: #f8fafc;
+                --text-secondary: #94a3b8;
+                --accent-italy-green: #008f4c;
+                --accent-italy-white: #f4f5f0;
+                --accent-italy-red: #cf2b36;
+                --glow-cyan: #38bdf8;
+                --glow-purple: #818cf8;
+                --border-subtle: rgba(255, 255, 255, 0.6);
+            }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Plus Jakarta Sans', sans-serif;
+                scroll-behavior: smooth;
+            }
+            body {
+                background-color: var(--bg-dark);
+                color: var(--text-primary);
+                overflow-x: hidden;
+                line-height: 1.7;
+            }
+            /* Ambient Background Glows */
+            .ambient-glow-1 {
+                position: absolute;
+                top: -10%;
+                left: -10%;
+                width: 50vw;
+                height: 50vw;
+                background: radial-gradient(circle, rgba(56, 189, 248, 0.7) 0%, transparent 70%);
+                z-index: 0;
+                pointer-events: none;
+            }
+            .ambient-glow-2 {
+                position: absolute;
+                top: 40%;
+                right: -10%;
+                width: 45vw;
+                height: 45vw;
+                background: radial-gradient(circle, rgba(129, 140, 248, 0.6) 0%, transparent 70%);
+                z-index: 0;
+                pointer-events: none;
+            }
+            /* Header */
+            header {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                background-color: rgba(11, 15, 25, 0.75);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter:blur(16px);
+                z-index: 1000;
+                border-bottom: 1px solid var(--border-subtle);
+            }
+
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 1.25rem 2rem;
+            }
+
+            .logo {
+                font-size: 1.25rem;
+                font-weight: 700;
+                letter-spacing: -0.5px;
+                color: var(--text-primary);
+                text-decoration: none;
+                display: flex;
+                gap: 8px;
+            }
+
+            .logo span {
+                background: linear-gradient(to right, var(--glow-cyan), var(--glow-cyan), var(--glow-purple));
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .nav-links {
+                display: flex;
+                list-style: none;
+                gap: 2.5rem;
+            }
+            .nav-links a {
+                color: var(--text-secondary);
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 0.95rem;
+                transition: color 0.3s ease;
+            }
+            .nav-links a:hover {
+                color: var(--text-primary);
+            }
+
+            /*Hero Section */
+            .hero {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 2rem;
+                position: relative;
+                z-index: 1;
+            }
+
+            .badge {
+               background: rgba(56, 189, 248, 0.08);
+               border: 1px solid rgba(56, 189, 248, 0.2);
+               color:var(--glow-cyan);
+               padding: 0.5rem 1.25rem;
+               border-radius: 100px;
+               font-size: 0.85rem;
+               font-weight: 600;
+               letter-spacing: 0.5px;
+               margin-bottom: 2rem;
+               text-transform: uppercase;
+            }
+
+            .hero h1 {
+                font-size: 4rem;
+                font-weight: 700;
+                line-height: 1.15rem;
+                letter-spacing: -1.5px;
+                max-width: 850px;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero h1 span {
+                background: linear-gradient(135deg, #ffffff 40%, var(--text-secondary));
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .hero h1 .highlight {
+                background: linear-gradient(135deg, var(--accent-italy-green) 40%, var(--accent-italy-red));
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+                color: var(--text-secondary);
+                max-width: 650px;
+                margin-bottom: 3rem;
+                font-weight: 400;
+            }
+
+            .cta-group {
+                display: flex;
+                gap: 1rem;
+            }
+
+            .btn {
+                display: inline-block;
+                padding: 0.9rem 2.2rem;
+                border-radius: 12px;
+                font-weight: 600;
+                font-size: 0.95rem;
+                text-decoration: none;
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .btn-primary {
+                background-color: var(--text-primary);
+                color: var(--bg-dark);
+                box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 30px rgba(255, 255, 255, 0.2);
+            }
+
+            .btn-secindary {
+                background-color: transparent;
+                color: var(--text-primary);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+            }
+
+            .btn-secondary:hover {
+                background-color: rgba(255, 255, 255, 0.3);
+                border-color: rgba(255, 255, 255, 0.3);
+                transform: translatY(-2px);
+            }
+
+            /* Sections */
+            section {
+                padding: 8rem 2rem;
+                max-width: 1100px;
+                margin: 0 auto;
+                position: relative;
+                z-index: 1;
+            }
+
+            .section-tag {
+                display: block;
+                color: var(--glow-cyan);
+                font-size: 0.85rem;
+                font-weight: 600;
+                letter-spacing: 1.5px;
+                margin-bottom: 0.75rem;
+                text-transform: uppercase;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+                font-weight: 700;
+                letter-spacing: -5px;
+            }
+
+            /* Italy Box */
+            .italy-box {
+                background: linear-gradient(135deg, var(--bg-card) 0%, rgba(19, 28, 46, 0.4) 100%);
+                border: 1px solid var(--border-subtle);
+                border-radius: 24px;
+                padding: 3.5rem;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .italy-flag-accent {
+                display: flex;
+                width: 80px;
+                height: 5px;
+                border-radius: 10px;
+                overflow: hidden;
+                margin-bottom: 2rem;
+            }
+
+            .flag-g { background-color: var(--accent-italy-green); flex: 1;}
+            .flag-g { background-color: var(--accent-italy-white); flex: 1;}
+            .flag-g { background-color: var(--accent-italy-red); flex: 1;}
+
+            .italy-content h3 {
+                font-size: 1.8rem;
+                font-weight: 600;
+                margin-bottom: 1.25rem;
+            }
+
+            .italy-content p {
+                color: var(--text-secondary);
+                font-size: 1.1rem;
+                max-width: 800px;
+                margin-bottom: 1.5rem;
+            }
+
+            /* Timeline Grid */
+            .timeline-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2.5rem;
+            }
+
+            .timeline-card {
+                background: linear-gradient(135deg, var(--bg-card) 0%, rgba(19, 28, 46, 0.4) 100%);
+                border: 1px solid var(--border-subtle);
+                border-radius: 24px;
+                padding: 3rem;
+                position: relative;
+                transition: border-color 0.4s ease;
+            }
+
+            .timeline-card:hover {
+                border-color: rgba(56, 189, 248, 0.3);
+            }
+
+            .year-indicator {
+                font-size: 3.5rem;
+                font-weight: 800;
+                line-height: 1;
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), transparent);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                position: absolute;
+                top: 2rem;
+                right: 3rem;
+                user-select: none;
+            }
+
+            .timeline-card h3 {
+                font-size: 1.4rem;
+                font-weight: 600;
+                margin-bottom: 1.75rem;
+                color: var(--text-primary);
+            }
+
+            .goal-list {
+                list-style: none;
+            }
+
+            .goal-list li {
+                position: relative;
+                padding-left: 1.75rem;
+                margin-bottom:1.25rem;
+                color: var(--text-secondary);
+                font-size: 1rem;
+            }
+
+           .goal-list li::before {
+                content:"";
+                position: absolute;
+                left: 0;
+                top: 0.6rem;
+                width: 6px;
+                height: 6px;
+                background-color: var(--glow-cyan);
+                border-radius: 50%;
+                box-shadow: 0 0 8px var(--glow-cyan);
+           }
+
+           .goals-list strong {
+                color: var(--text-primary);
+                font-weight: 600;
+           }
+
+            /* Design Skills Grid */
+            .skills-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+
+            .skills-item {
+                background: linear-gradient(135deg, var(--bg-card) 0%, rgba(19, 28, 46, 0.4) 100%);
+                border: 1px solid var(--border-subtle);
+                border-radius: 20px;
+                padding: 2.5rem;
+                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            
+             .skill-item:hover {
+                transform: translateY(-5px);
+                border-color: rgba(129, 140, 248, 0.3);
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+             }
+
+             .skill-icon { 
+                width: 48px;
+                height: 48px;
+                background: rgba(255, 255, 255, 0.04);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                margin-bottom: 1.75rem;
+             }
+
+                .skill-title {
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    margin-bottom: 0.75rem;
+                }
+
+                .skill-item h3 {
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    margin-bottom: 0.75rem;
+                }
+
+                    .skill-item p {
+                        color: var(--text-secondary);
+                        font-size: 0.95rem;
+                        line-height: 1.6;
+                }
+
+                    /* Footer */
+                    footer {
+                        border-top: 1px solid var(--border-subtle);
+                        padding: 3rem 2rem;
+                        text-align: center;
+                        color: var(--text-secondary);
+                        font-size: 0.9rem;
+                     }   
+
+                     /* Responsive Design */
+                        @media (max-width: 968px) {
+                            .skills-grid { grid-template-columns:1fr;}
+                            .timeline-grid { grid-template-columns: 1fr;}
+                            .hero h1 { font-size: 3rem; }
+                            }
+                        @media (max-width: 768px) {
+                            .nav-links { display: none;}
+                            .hero h1 { font-size: 2.5rem; }
+                            .italy-wrapper { padding: 2rem;}
+                        }
+        </style>
+    </head>
+    <body>
+        <div class="ambient-glow-1"></div>
+        <div class="ambient-glow-2"></div>
+
+        <header>
+            <nav>
+                <a href="#" class="logo">Vision<span>27</span></a>
+                <ul class="nav-links">
+                    <li><a href="#destination">Destination</a></li>
+                    <li><a href="#roadmap">Roadmap</a></li>
+                    <li><a href="#creative">Creative Assests</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="badge">Future Scholar & Aspirations & Design Portfolio</div>
+            <h1>Shaping Pixels, Competing Nationally, Headed to <span class="highlight">Italy</span>span>.</h1>
+            <p>I merge visual design intelligence with structured academic excellence, targeting top-tier European higher education in Italy for the 2027 cycle.</p>
+            <div class="cta-group">
+                <a href="#roadmap" class="btn btn-primary">View 2026-2027 Goals</a>
+                <a href="#creative" class="btn btn-secondary">Explore Skills</a>
+            </div>
+        </section>
+
+        <!-- Destination Section -->
+        <section id="destination">
+            <div class="section-header">
+                <span class="section-tag">The Ultimate Target</span>
+            <h2 class="section-title">Academic Journey: To Italy</h2>
+                </div>
+            <div class="italy-wrapper">
+                <div class="italy-flag-accent">
+                    <div class="flag-g"></div>
+                    <div class="flag-w"></div>
+                    <div class="flag-r"></div>
+                </div>
+                <div class="italy-content">
+                    <h3>Why Italian Higher Education?</h3>
+                    <p>Italy sits at absolute interserction of classic historic preservation and progressive modern industrial styling. My core dream is to immerse myself in its rich acedimec hertige, learning alongside world-class and engineers while testng my limits inside an enviroment built on arvhitectural and digital beauty.</p>
+                    <p>I am actively preparing my portifilio, cultural foundational knowledge, and technical skill set to thrive within competitive international university programs across the country.</p>
+                </div>
+            </section>
+
+            <section id="roadmap">
+                <div class="section header">
+                    <span class="section-tag">Milestones</span>
+                    <h2 class="section-title">Strategic Execution Plan</h2>
+                </div>
+                <div class="timeline-grid">
+
+                <div class="timeline-card">
+                    <h3>Phase 01: High-Value Stranardized Testing</h3>
+                   <ul class="goals-list"
+                       <li>Achieving a highly competitve score on the<strong> SAT examination</strong> to solidify general analytical capabilities.</li>
+                       <li>Targeting a top-tier score on the <strong>IELTS</strong> to demonstrate English proficiency for international academic settings.</li>
+                       <li>Susbtaining regular acedimec excellence while expanding knowledg in algorithm math and logic.</li>
+                       <li>Structuring creative workflows to be compiling early design draft reviews.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-card">
+                <div class="year-indicator">27</div>
+                <h3>Phase 02: Language Credentials & Global Admissions</h3>
+                   <ul class="goals-list">
+                    <li>Securing a strong IELTS score to meet international university requirements.</li>
+                     <li>Finalizing letters of motivation, creative design portifolios, and university evaulation files.</li>
+                     <li>Submitting official applications to target initiating relocation logistics.</li>
+                </ul>
+             </div>
+
+        </div>
+    </section>
+    <section id="creative">
+        <div class="section-header">
+            <span class="section-tag">Core Competencies</span>
+            <h2 class="section-title">Design & Creative Capabilities</h2>
+        </div>
+        <div class="skills-grid">
+
+            <div class="skill-item">
+                <div class="skill-icon-box">💻</div>
+                <h3>UI & Interface Layouts</h3>
+                <p>Architecting clean layouts focused on structrural rythm, dynamic proportions, and flawless responiveness across modern platforms.</p>
+            </div>
+
+            <div class="skill-item">
+                <div class="skill-icon-box">🎨</div>
+                <h3>Visual Language & Harmony</h3>
+                <p>Creating compelling visual narratives through strategic design thinking and execution.</p>
+            </div>
+
+            <div class="skill-item">
+                <div class="skill-icon-box">📚</div>
+                <h3>Conceptual Strategy</h3>
+                <p>Translating multi-layered strategic goals into fuctional, elegant interactive experiences with no unneecessary noise.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026. Designed with clear purpose for GitHub, LinkedIn, Macondo and personal projects.</p>
+    </footer>
+    </body>
+    </html>
